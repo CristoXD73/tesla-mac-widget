@@ -1,17 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="258" viewBox="0 0 760 258">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="226" viewBox="0 0 760 226">
 <style>
  .bg{fill:#ffffff} .title{font:700 26px -apple-system,Helvetica,Arial,sans-serif;fill:#171a20}
- .page{font:600 14px -apple-system,Helvetica,Arial,sans-serif;fill:#3e6ae1}
+ .page{font:600 13px -apple-system,Helvetica,Arial,sans-serif;fill:#5c5e62;letter-spacing:.06em}
  .label{font:600 15px -apple-system,Helvetica,Arial,sans-serif;fill:#393c41}
+ .body{font:400 16px -apple-system,Helvetica,Arial,sans-serif;fill:#393c41}
  .value{font:500 16px ui-monospace,Menlo,monospace;fill:#171a20}
  .dim{font:400 15px -apple-system,Helvetica,Arial,sans-serif;fill:#8e8e8e}
  .box{fill:#f4f4f4;stroke:#3e6ae1;stroke-width:2}
  .on{fill:#3e6ae1} .off{fill:#fff;stroke:#c9c9c9;stroke-width:2}
  .tick{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
- .note{fill:#fff7e0;stroke:#f2c94c} .notetext{font:500 15px -apple-system,Helvetica,Arial,sans-serif;fill:#5c4500}
+ .note{fill:#f4f6fb;stroke:#d0d7e8} .notetext{font:500 15px -apple-system,Helvetica,Arial,sans-serif;fill:#30333a}
 </style>
-<rect width="760" height="258" rx="14" class="bg" stroke="#e2e2e2"/>
-<text x="40" y="34" class="page">TESLA FORM · PAGE 5 OF 5</text>
+<rect x=".5" y=".5" width="759" height="225" rx="14" class="bg" stroke="#e2e2e2"/>
+<text x="40" y="34" class="page">DEVELOPER.TESLA.COM · PAGE 5 OF 5</text>
 <text x="40" y="66" class="title">Billing Details</text>
-<text x="40" y="96" class="dim">Add a payment card (ask a grown-up 💳).</text><text x="40" y="126" class="dim">Tesla gives every account a free monthly credit, and this</text><text x="40" y="156" class="dim">widget is built to stay under it, so normally you pay $0.</text><rect x="40" y="186" width="680" height="46" rx="8" class="note"/><text x="56" y="215" class="notetext">💡 Tesla turns apps off if no card is added, even when they're free.</text>
+<text x="40" y="96" class="body">Add a payment method. Tesla gives every developer account a monthly</text><text x="40" y="122" class="body">credit, and the widget is designed to stay under it.</text><rect x="40" y="154" width="680" height="46" rx="8" class="note"/><text x="56" y="183" class="notetext">Apps without a payment method are switched off, even when they cost $0.</text>
 </svg>

@@ -1,17 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="414" viewBox="0 0 760 414">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420">
 <style>
  .bg{fill:#ffffff} .title{font:700 26px -apple-system,Helvetica,Arial,sans-serif;fill:#171a20}
- .page{font:600 14px -apple-system,Helvetica,Arial,sans-serif;fill:#3e6ae1}
+ .page{font:600 13px -apple-system,Helvetica,Arial,sans-serif;fill:#5c5e62;letter-spacing:.06em}
  .label{font:600 15px -apple-system,Helvetica,Arial,sans-serif;fill:#393c41}
+ .body{font:400 16px -apple-system,Helvetica,Arial,sans-serif;fill:#393c41}
  .value{font:500 16px ui-monospace,Menlo,monospace;fill:#171a20}
  .dim{font:400 15px -apple-system,Helvetica,Arial,sans-serif;fill:#8e8e8e}
  .box{fill:#f4f4f4;stroke:#3e6ae1;stroke-width:2}
  .on{fill:#3e6ae1} .off{fill:#fff;stroke:#c9c9c9;stroke-width:2}
  .tick{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
- .note{fill:#fff7e0;stroke:#f2c94c} .notetext{font:500 15px -apple-system,Helvetica,Arial,sans-serif;fill:#5c4500}
+ .note{fill:#f4f6fb;stroke:#d0d7e8} .notetext{font:500 15px -apple-system,Helvetica,Arial,sans-serif;fill:#30333a}
 </style>
-<rect width="760" height="414" rx="14" class="bg" stroke="#e2e2e2"/>
-<text x="40" y="34" class="page">TESLA FORM · PAGE 2 OF 5</text>
+<rect x=".5" y=".5" width="759" height="419" rx="14" class="bg" stroke="#e2e2e2"/>
+<text x="40" y="34" class="page">DEVELOPER.TESLA.COM · PAGE 2 OF 5</text>
 <text x="40" y="66" class="title">Application Details</text>
-<text x="40" y="96" class="label">Application Name</text><rect x="40" y="106" width="680" height="44" rx="6" class="box"/><text x="56" y="135" class="value">My Mac Tesla Widget</text><text x="40" y="178" class="label">Application Description</text><rect x="40" y="188" width="680" height="44" rx="6" class="box"/><text x="56" y="217" class="value">Desktop widget for my own Tesla on my Mac</text><text x="40" y="260" class="label">Purpose of Usage</text><rect x="40" y="270" width="680" height="44" rx="6" class="box"/><text x="56" y="299" class="value">Personal use. Shows my own car's battery and lets me lock it from my Mac.</text><rect x="40" y="342" width="680" height="46" rx="8" class="note"/><text x="56" y="371" class="notetext">💡 Any words are fine. Then press Next.</text>
+<text x="40" y="96" class="label">Application Name</text><rect x="40" y="106" width="680" height="44" rx="6" class="box"/><text x="56" y="135" class="value">My Mac Tesla Widget</text><text x="40" y="178" class="label">Application Description</text><rect x="40" y="188" width="680" height="44" rx="6" class="box"/><text x="56" y="217" class="value">Desktop widget for my own Tesla on my Mac</text><text x="40" y="260" class="label">Purpose of Usage</text><rect x="40" y="270" width="680" height="44" rx="6" class="box"/><text x="56" y="299" class="value">Personal use: shows my car's status and sends lock/climate commands.</text><rect x="40" y="348" width="680" height="46" rx="8" class="note"/><text x="56" y="377" class="notetext">Any wording works. Press Next.</text>
 </svg>

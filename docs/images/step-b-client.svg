@@ -1,17 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="482" viewBox="0 0 760 482">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="484" viewBox="0 0 760 484">
 <style>
  .bg{fill:#ffffff} .title{font:700 26px -apple-system,Helvetica,Arial,sans-serif;fill:#171a20}
- .page{font:600 14px -apple-system,Helvetica,Arial,sans-serif;fill:#3e6ae1}
+ .page{font:600 13px -apple-system,Helvetica,Arial,sans-serif;fill:#5c5e62;letter-spacing:.06em}
  .label{font:600 15px -apple-system,Helvetica,Arial,sans-serif;fill:#393c41}
+ .body{font:400 16px -apple-system,Helvetica,Arial,sans-serif;fill:#393c41}
  .value{font:500 16px ui-monospace,Menlo,monospace;fill:#171a20}
  .dim{font:400 15px -apple-system,Helvetica,Arial,sans-serif;fill:#8e8e8e}
  .box{fill:#f4f4f4;stroke:#3e6ae1;stroke-width:2}
  .on{fill:#3e6ae1} .off{fill:#fff;stroke:#c9c9c9;stroke-width:2}
  .tick{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
- .note{fill:#fff7e0;stroke:#f2c94c} .notetext{font:500 15px -apple-system,Helvetica,Arial,sans-serif;fill:#5c4500}
+ .note{fill:#f4f6fb;stroke:#d0d7e8} .notetext{font:500 15px -apple-system,Helvetica,Arial,sans-serif;fill:#30333a}
 </style>
-<rect width="760" height="482" rx="14" class="bg" stroke="#e2e2e2"/>
-<text x="40" y="34" class="page">TESLA FORM · PAGE 3 OF 5</text>
+<rect x=".5" y=".5" width="759" height="483" rx="14" class="bg" stroke="#e2e2e2"/>
+<text x="40" y="34" class="page">DEVELOPER.TESLA.COM · PAGE 3 OF 5</text>
 <text x="40" y="66" class="title">Client Details</text>
-<text x="40" y="96" class="dim">OAuth Grant Type: pick the one that says</text><rect x="40" y="110" width="22" height="22" rx="4" class="on"/><path d="M45 121 l5 5 l9 -11" class="tick"/><text x="74" y="126" class="value">Authorization Code and Machine-to-Machine</text><text x="40" y="164" class="label">Allowed Origin URL(s)</text><rect x="40" y="174" width="680" height="44" rx="6" class="box"/><text x="56" y="203" class="value">https://YOURNAME.github.io</text><text x="40" y="246" class="label">Allowed Redirect URI(s)</text><rect x="40" y="256" width="680" height="44" rx="6" class="box"/><text x="56" y="285" class="value">https://YOURNAME.github.io/tesla-callback/</text><text x="40" y="328" class="label">Allowed Returned URL(s)</text><rect x="40" y="338" width="680" height="44" rx="6" class="box"/><text x="56" y="367" class="value">(leave empty)</text><rect x="40" y="410" width="680" height="46" rx="8" class="note"/><text x="56" y="439" class="notetext">💡 Use YOUR website from the installer. Keep the / at the end!</text>
+<text x="40" y="96" class="body">OAuth Grant Type</text><rect x="40" y="106" width="22" height="22" rx="4" class="on"/><path d="M45 117 l5 5 l9 -11" class="tick"/><text x="74" y="122" class="value">Authorization Code and Machine-to-Machine</text><text x="40" y="160" class="label">Allowed Origin URL(s)</text><rect x="40" y="170" width="680" height="44" rx="6" class="box"/><text x="56" y="199" class="value">https://YOURNAME.github.io</text><text x="40" y="242" class="label">Allowed Redirect URI(s)</text><rect x="40" y="252" width="680" height="44" rx="6" class="box"/><text x="56" y="281" class="value">https://YOURNAME.github.io/tesla-callback/</text><text x="40" y="324" class="label">Allowed Returned URL(s)</text><rect x="40" y="334" width="680" height="44" rx="6" class="box"/><text x="56" y="363" class="value">(leave empty)</text><rect x="40" y="412" width="680" height="46" rx="8" class="note"/><text x="56" y="441" class="notetext">Use the website the installer printed. Keep the slash at the end of the redirect.</text>
 </svg>

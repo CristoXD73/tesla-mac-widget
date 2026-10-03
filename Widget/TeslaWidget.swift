@@ -2,10 +2,12 @@ import AppIntents
 import SwiftUI
 import WidgetKit
 
+#if !RENDER_TOOL // tools/render-media.sh compiles these views into its own program
 @main
 struct TeslaWidgetBundle: WidgetBundle {
     var body: some Widget { TeslaWidget() }
 }
+#endif
 
 struct TeslaWidget: Widget {
     var body: some WidgetConfiguration {
@@ -83,7 +85,7 @@ struct TeslaWidgetView: View {
     }
 }
 
-private struct MediumView: View {
+struct MediumView: View {
     var s: VehicleSnapshot
     var now: Date
 
@@ -107,7 +109,7 @@ private struct MediumView: View {
     }
 }
 
-private struct LargeView: View {
+struct LargeView: View {
     var s: VehicleSnapshot
     var now: Date
 
@@ -134,7 +136,7 @@ private struct LargeView: View {
     }
 }
 
-private struct SmallView: View {
+struct SmallView: View {
     var s: VehicleSnapshot
     var now: Date
 

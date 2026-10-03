@@ -22,8 +22,12 @@ enum Shared {
     static let refreshNotification = Notification.Name(appGroup + ".refresh")
 
     static var container: URL {
-        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup)
+        #if RENDER_TOOL
+        return FileManager.default.temporaryDirectory.appendingPathComponent("tesla-widget-render")
+        #else
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup)
             ?? FileManager.default.temporaryDirectory
+        #endif
     }
 
     static func file(_ name: String) -> URL { container.appendingPathComponent(name) }

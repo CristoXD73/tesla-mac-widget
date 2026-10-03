@@ -1,254 +1,304 @@
-# 🚗 Tesla Mac Widget
+<div align="center">
 
-**See your Tesla on your Mac's desktop, and lock it, cool it or open the trunk with one click.**
-No iPhone needed. It talks to your car through Tesla's official API.
+<img src="docs/images/icon-256.png" width="128" alt="Tesla Mac Widget icon">
 
-![Tesla Mac Widget, medium and large sizes](docs/images/hero.png)
+# Tesla Mac Widget
 
-<sub>Shown with the optional Tesla-style icons. Address and map blurred for privacy.</sub>
+**Your Tesla on your Mac's desktop.**
+Battery, lock, Sentry and location at a glance, and lock, climate, frunk and trunk one click away.
 
-- 🔋 Battery %, range, charging time left
-- 🔒 Locked or unlocked, 🔴 Sentry on or off, 🌡️ inside temperature
-- 📍 Street address and a map (large size)
-- 🖼️ The official photo of **your** car: right model, color and wheels
-- 👆 Buttons: lock/unlock, climate, frunk, trunk, garage (HomeLink)
-- 💸 Free to run for normal use (see [Costs](#-costs))
+![macOS 15+](https://img.shields.io/badge/macOS-15%2B-000?logo=apple)
+![Swift](https://img.shields.io/badge/Swift-SwiftUI%20%C2%B7%20WidgetKit-F05138?logo=swift&logoColor=white)
+![Tesla Fleet API](https://img.shields.io/badge/Tesla-Fleet%20API-cc0000)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
+<img src="docs/images/hero.png" width="760" alt="The medium, small and large widgets on a dark desktop">
+
+[Install](#install) · [Connect to Tesla](#connect-to-tesla) · [Using it](#using-it) · [Costs](#costs) · [Troubleshooting](#troubleshooting)
+
+</div>
 
 ---
 
-## ⏱️ What you need (about 20 minutes)
+## What it does
 
 | | |
 |---|---|
-| 💻 | A Mac with **macOS 15 (Sequoia) or newer** |
-| 🚗 | A Tesla, and the Tesla app on your phone |
-| 🍎 | An Apple ID (the free one is fine) |
-| 🐙 | A GitHub account (free; the installer helps you make one) |
-| 💳 | A payment card for Tesla's developer site. **Ask a grown-up!** You normally pay $0. |
+| **At a glance** | Battery level, range, charging time left, locked or unlocked, Sentry, inside temperature, and the street the car is parked on. |
+| **Your car, exactly** | The official render of *your* car (model, paint and wheels), taken from Tesla's own configurator using your car's option codes. |
+| **One-click controls** | Lock or unlock, climate on or off, open the frunk or trunk, and trigger HomeLink for your garage. The widget updates the moment you click, and confirms with the car right after. |
+| **Three sizes** | Small for battery and Sentry, medium for the status line and controls, large for a map of where the car is parked. |
+| **Opens the Tesla app** | Click the car and the Tesla app opens through iPhone Mirroring, like Tesla's own iPhone widget does on a Mac. |
+| **Stays free** | It checks the car every 15 minutes (every 5 while charging or driving), never wakes it on its own, and keeps itself under Tesla's free monthly credit. |
+| **Private** | Data goes from Tesla's servers straight to your Mac. Your keys never leave it. |
 
-There are **3 parts**: install the app on your Mac, make a "key" on Tesla's website, then connect them.
+<sub>The images above are rendered from the widget's own views with sample data, using <code>tools/render-media.sh</code>.</sub>
 
 ---
 
-## Part 1 · Install the app 🧰 (5 minutes)
+## Install
 
-**1. Get Xcode.** Open the **App Store**, search **Xcode**, click **Get**. It's big, so grab a snack 🍪.
-Open Xcode once and click **Install** if it asks.
+### What you need
 
-**2. Sign Xcode in with your Apple ID.** In Xcode: **Settings → Accounts → +** → **Apple ID** → sign in.
-Then click your name → **Manage Certificates… → + → Apple Development → Done**.
+- A Mac with **macOS 15 (Sequoia) or newer**
+- **Xcode** from the App Store (free), opened once
+- An **Apple ID** signed in to Xcode: *Xcode → Settings → Accounts → +*, then select your name → *Manage Certificates… → + → Apple Development*
+- **[Homebrew](https://brew.sh)**
+- A **GitHub** account (free). Tesla needs a small public website to trust your app, and the installer makes one for you on GitHub Pages
+- A **Tesla account** that owns the car, with the Tesla app on your phone
 
-**3. Get Homebrew** (a helper that installs tools). Go to **[brew.sh](https://brew.sh)**, copy the one long line,
-open **Terminal** (press ⌘ Space, type `Terminal`, press Return), paste it and press Return.
+### Run the installer
 
-**4. Download this project and run the installer.** Paste these into Terminal, one at a time:
+Open **Terminal** and paste these two lines:
 
 ```bash
 git clone https://github.com/CristoXD73/tesla-mac-widget.git ~/tesla-mac-widget
-```
-
-```bash
 cd ~/tesla-mac-widget && ./install.sh
 ```
 
-The installer talks you through everything. It:
+It walks through seven steps and tells you what it's doing at each one:
 
-1. ✅ checks your Mac
-2. ✅ finds your Apple developer account
-3. ✅ makes your car keys (the secret one never leaves your Mac)
-4. ✅ makes your free website on GitHub (Tesla needs it to trust your app). A browser opens so you can log in to GitHub.
-5. ❓ asks if you want Tesla's real app icon (optional, see [Tesla's real look](#-teslas-real-look-free-just-for-you))
-6. ✅ builds the app
-7. ✅ installs it and puts a 🚗 in your menu bar
+```
+  Tesla Mac Widget installer
 
-At the end it shows your website, like `https://yourname.github.io`. **Write it down**, you need it in Part 2.
+  Step 1 of 7: Checking your Mac
+     macOS 26.0 and Xcode are ready.
+     Helper tools are installed.
 
----
+  Step 2 of 7: Finding your Apple developer account
+     Using Apple team A1B2C3D4E5.
 
-## Part 2 · Make your key on Tesla's website 🔑 (10 minutes)
+  Step 3 of 7: Making your keys
+     Keys are in ~/.tesla-widget. The private key never leaves this Mac.
+     Tesla's command proxy is ready.
 
-**1.** Go to **[developer.tesla.com](https://developer.tesla.com)** and sign in with your **Tesla account**.
-> Tesla wants two-step login turned on. If it asks, follow its steps to turn on **Multi-Factor Authentication**.
+  Step 4 of 7: Publishing your public key
+     Log in to GitHub in the browser window that opens (a free account is enough).
+     Publish your public key on https://yourname.github.io? It is meant to be public. [y/n] y
+     Your website is https://yourname.github.io
+     Your public key is online.
 
-**2.** Click **Create New Application** (it may say *Request App Access*). On the first page, fill in your
-name and email, and pick **personal / individual** if it asks. Click **Next**.
+  Step 5 of 7: Tesla's own look (optional)
+     Use the Tesla app's icon from the App Store? It stays on this Mac. [y/n] y
+     Downloaded the Tesla app icon.
 
-**3. Application Details.** Type anything friendly, like this:
+  Step 6 of 7: Building the app
+** BUILD SUCCEEDED **
 
-![What to type on the Application Details page](docs/images/step-a-application.svg)
+  Step 7 of 7: Installing
+     Installed in Applications. The car icon is now in your menu bar.
 
-<details><summary>📸 What the real page looks like</summary>
-
-![Tesla's Application Details page](docs/images/tesla-1-application-details.png)
-</details>
-
-**4. Client Details.** This page is the most important one! Use **your** website from Part 1 instead of `YOURNAME`:
-
-![What to type on the Client Details page](docs/images/step-b-client.svg)
-
-> ⚠️ Copy them **exactly**: `https`, all small letters, and the `/` at the end of the second one.
-> If the box has an **Add** or **+** button, click it, or the address won't be saved.
-
-**5. API & Scopes.** Tick the four **vehicle** boxes:
-
-![Which boxes to tick](docs/images/step-c-scopes.svg)
-
-**6. Billing Details.** Add a card (grown-up time 💳):
-
-![Billing page explanation](docs/images/step-d-billing.svg)
-
-**7. Copy your two codes.** Open your new app on developer.tesla.com. You'll see a **Client ID** and a
-**Client Secret** (click the 👁 eye to show it). Then, in the menu bar, click 🚗 → **Setup & Status…** →
-**Open credentials.env**, paste the codes after the `=` signs, and save with **⌘S**:
-
-![credentials.env example](docs/images/step-e-credentials.svg)
-
-> 🤫 The Client Secret is like a password. Never post it or send it to anyone.
-
----
-
-## Part 3 · Connect your car 🔌 (3 minutes)
-
-Click 🚗 in the menu bar → **Setup & Status…** and go down the list. Each step turns ✅ when it's done:
-
-![The setup window with every step done](docs/images/setup-window.png)
-
-1. **Reload**: the app reads the codes you just pasted.
-2. **Register**: tells Tesla about your website (takes a second, nothing pops up).
-3. **Sign In**: Tesla's login page opens in your browser. Log in and press **Allow**.
-   If the browser asks to open **Tesla Widget**, say yes.
-4. **Pair the key** (needed for the buttons): scan the QR code with your **iPhone camera**, approve in the
-   **Tesla app**, then tap your **key card** on the car's middle console when the car asks.
-5. **Add the widget**: right-click your desktop → **Edit Widgets** → search **Tesla** → drag the size you like onto the desktop.
-
-**🎉 You did it!** Turn on **Open at Login** in the 🚗 menu so it keeps working after a restart.
-
----
-
-## 👆 Using it
-
-| Button | What it does |
-|---|---|
-| 🔒 | Locks or unlocks |
-| 🌀 | Turns climate on or off (turns blue when on) |
-| Frunk | Opens the front trunk |
-| Trunk | Opens or closes the back trunk |
-| 📟 | Opens your garage (HomeLink), if your car has it set up |
-| Click the car | Opens the Tesla app through **iPhone Mirroring** |
-
-- A tap changes the widget right away. The button dims while the car answers (about 1–3 seconds). If the car says no, it flips back and shows why.
-- A sleeping car gets woken up for the button, so that one press can take ~10 seconds.
-- **Clicking the car** opens iPhone Mirroring and opens Tesla for you. The first time, macOS asks to let
-  **Tesla Widget** use **Accessibility**. Say yes in System Settings, so it can type "Tesla" into your iPhone's search.
-
-The widget comes in **small, medium and large**. Large adds the map and range.
-
----
-
-## 🎨 Tesla's real look (free, just for you)
-
-This project doesn't include Tesla's logo or icons (they belong to Tesla). You can still get the real
-look on **your own Mac** for free. These stay in `~/.tesla-widget/overrides/` and are never uploaded:
-
-| What | How | Cost |
-|---|---|---|
-| 🚗 **Your car's photo** | Automatic! The app asks Tesla's API for your car's option codes (color, wheels, model), then gets the matching official picture from Tesla's image service. Menu: 🚗 → **Reload Car Image & Icons** to fetch it again. | Free |
-| 🟥 **Tesla app icon** | Say **yes** when `./install.sh` asks. It uses Apple's free App Store lookup API (`itunes.apple.com/lookup?bundleId=com.teslamotors.TeslaApp`) to download the Tesla app's icon. | Free |
-| 🔘 **Button icons** | Take a screenshot (⌘⇧4) of just the row of five buttons from your Tesla app's widget (lock, fan, frunk, trunk, HomeLink, on a dark background). Then run the command below and click 🚗 → **Reload Car Image & Icons**. | Free |
-
-```bash
-swift ~/tesla-mac-widget/tools/slice-icons.swift ~/Desktop/your-screenshot.png
+  All done. Next: "Connect to Tesla" in the README.
 ```
 
-Want a different car picture? Save any PNG as `~/.tesla-widget/overrides/car.png` and reload.
+Keep the website it prints (`https://yourname.github.io`). You'll type it on Tesla's site next.
+Run `./install.sh` again any time to update; it skips whatever is already done.
 
 ---
 
-## 💸 Costs
+## Connect to Tesla
 
-Tesla charges developers per use, and gives **every account a monthly credit** (about $10).
-This widget is built to stay under it:
+Tesla only lets apps read a car once they're registered on **[developer.tesla.com](https://developer.tesla.com)**.
+It's a five-page form you fill in once, about ten minutes.
 
-- Checks the car about every **15 minutes** (every 5 when charging, driving or with climate on)
-- **Never wakes your car** by itself (only when you press a button)
-- Stops checking while your screen is asleep
-- Counts its own usage (🚗 menu shows *"API usage this month"*) and **slows down, then stops**, before reaching the credit
+**1.** Sign in to [developer.tesla.com](https://developer.tesla.com) with the Tesla account that owns the car.
+Tesla requires multi-factor authentication on that account; it will walk you through turning it on if it's off.
 
-Normal use comes out to a few dollars of the free credit, so **$0** on your card.
+**2.** Choose **Create New Application** (it may read *Request App Access*). On the **Registration** page,
+fill in your name and email and choose personal use if asked.
 
-## 🔐 Privacy & safety
+**3. Application Details.** Any wording works:
 
-- Your car data goes straight from Tesla to your Mac. No other servers, no tracking.
-- Your **private key** and **Client Secret** stay in `~/.tesla-widget` on your Mac.
-- The public key on your website is **meant** to be public (like a padlock anyone can see but only you can open).
-- To remove the app's access: in the car go to **Controls → Locks**, delete its key, and/or delete the app on developer.tesla.com.
+<img src="docs/images/step-a-application.svg" width="620" alt="Application Name, Description and Purpose of Usage filled in">
+
+<details>
+<summary>What the real page looks like</summary>
+
+<img src="docs/images/tesla-1-application-details.png" width="720" alt="Tesla's Application Details page">
+</details>
+
+**4. Client Details.** This is the page that matters. Replace `YOURNAME` with your own website from the installer:
+
+<img src="docs/images/step-b-client.svg" width="620" alt="Grant type, allowed origin and redirect URI">
+
+Both addresses must match exactly: `https`, lowercase, and the slash at the end of the redirect.
+If a field has an **Add** button, press it, or the address isn't saved.
+
+**5. API & Scopes.** Tick the four vehicle scopes:
+
+<img src="docs/images/step-c-scopes.svg" width="620" alt="The four vehicle scopes ticked">
+
+**6. Billing Details.** Add a payment method:
+
+<img src="docs/images/step-d-billing.svg" width="620" alt="Billing details explained">
+
+**7. Your two codes.** Open the app you just made on developer.tesla.com and copy its **Client ID** and
+**Client Secret** (the eye icon reveals the secret). In the menu bar choose the car icon → **Setup & Status…** →
+**Open credentials.env**, paste them after the `=` signs and save:
+
+<img src="docs/images/step-e-credentials.svg" width="620" alt="credentials.env with the three values">
+
+Treat the Client Secret like a password: don't share it or commit it anywhere.
+
+### Finish in the setup window
+
+Back in **Setup & Status…**, go down the list. Each step gets a green check when it's done:
+
+<img src="docs/images/setup-window.png" width="420" alt="The setup window with every step complete">
+
+| # | Press | What happens |
+|---|---|---|
+| 1 | **Reload** | The app reads the codes you pasted. |
+| 2 | **Register** | Tells Tesla about your website. It takes a second and nothing opens. |
+| 3 | **Sign In** | Tesla's login opens in your browser. Sign in and allow access; if the browser asks to open Tesla Widget, allow that too. |
+| 4 | **Pair the key** | Scan the QR code with your iPhone camera, approve in the Tesla app, then tap your key card on the car's console. Only the buttons need this. |
+| 5 | **Add the widget** | Right-click the desktop → **Edit Widgets** → search **Tesla** → drag the size you want onto the desktop. |
+
+Then turn on **Open at Login** in the car icon's menu, so the widget keeps updating after a restart.
 
 ---
 
-## 🛟 Help! Something's wrong
+## Using it
 
-<details><summary><b>"The 'redirect_uri' supplied is not registered for this 'client_id'"</b></summary>
+<table>
+<tr>
+<td width="33%" align="center"><b>Small</b><br><img src="docs/images/widget-small.png" width="200" alt="Small widget"></td>
+<td width="33%" align="center"><b>Medium</b><br><img src="docs/images/widget-medium.png" width="300" alt="Medium widget"></td>
+<td width="33%" align="center"><b>Large</b><br><img src="docs/images/widget-large.png" width="250" alt="Large widget"></td>
+</tr>
+</table>
 
-![redirect_uri error](docs/images/error-redirect-uri.png)
+| Click | What happens |
+|---|---|
+| **Lock** | Locks or unlocks; the padlock opens when the car is unlocked |
+| **Fan** | Climate on or off; it turns blue while on |
+| **Frunk** / **Trunk** | Opens the front trunk / opens or closes the rear trunk |
+| **HomeLink** | Opens your garage, if HomeLink is set up in the car |
+| **The car** | Opens the Tesla app through iPhone Mirroring |
 
-Tesla doesn't have your sign-in address saved. On developer.tesla.com → your app → **Client Details → Edit**:
-- **Allowed Redirect URI(s)** must be exactly `https://YOURNAME.github.io/tesla-callback/` (with the `/` at the end). Press **Add/+** if there's a button.
-- **OAuth Grant Type** must include **Authorization Code**.
+- A click changes the widget straight away and dims the button while the car answers, usually one to three seconds. If the car refuses, the widget flips back and shows the reason.
+- If the car is asleep, the first click wakes it, so that one takes around ten seconds.
+- Clicking the car opens iPhone Mirroring and searches your iPhone for Tesla. The first time, macOS asks to allow **Tesla Widget** under *Privacy & Security → Accessibility*; without it, the click only opens iPhone Mirroring.
 
-Save, wait a minute, then click **Sign In** again. If your page still looks like this one, it isn't saved yet:
+The car icon's menu shows the latest status, **Refresh Now**, **Reload Car Image & Icons**, this month's API usage and **Open at Login**.
 
-![Client details missing the redirect URI](docs/images/tesla-client-details-example.png)
+---
+
+## Tesla's own look
+
+The repository ships original look-alike icons and no Tesla artwork. You can still give your own copy the
+real look for free; these files live in `~/.tesla-widget/overrides/` and never leave your Mac.
+
+| | How | Cost |
+|---|---|---|
+| **Your car's photo** | Automatic. The app reads your car's option codes from the Fleet API and asks Tesla's configurator for the matching render. **Reload Car Image & Icons** fetches it again. | Free |
+| **Tesla app icon** | Answer **y** in step 5 of the installer. It uses Apple's App Store lookup API (`itunes.apple.com/lookup?bundleId=com.teslamotors.TeslaApp`) to download the Tesla app's icon. | Free |
+| **Button icons** | Screenshot (⌘⇧4) just the row of five buttons from the Tesla app's widget, light icons on a dark background, then run the command below and choose **Reload Car Image & Icons**. | Free |
+
+```bash
+swift ~/tesla-mac-widget/tools/slice-icons.swift ~/Desktop/tesla-buttons.png
+```
+
+It cuts out the five icons and makes an unlocked padlock to match. To use any other picture of
+the car, save it as `~/.tesla-widget/overrides/car.png` and reload.
+
+---
+
+## Costs
+
+Tesla charges developers per request and gives every account a monthly credit, about $10.
+The widget is designed to stay well under it:
+
+- It checks the car every **15 minutes**, or every **5** while charging, driving or with climate on.
+- It **never wakes the car** by itself; only a button press does.
+- It pauses while your screen is asleep.
+- It counts its own requests (shown in the menu) and slows down, then stops checking, before reaching the credit.
+
+Typical use comes to a few dollars of the credit, so nothing is charged to your card.
+
+## Privacy
+
+- Car data goes from Tesla's servers straight to your Mac. There are no other servers, accounts or analytics.
+- The private key and Client Secret stay in `~/.tesla-widget` on your Mac.
+- The public key on your website is meant to be public; it only lets Tesla check that commands really came from you.
+- To revoke access, remove the key in the car under *Controls → Locks*, or delete the app on developer.tesla.com.
+
+---
+
+## Troubleshooting
+
+<details>
+<summary><b>"The 'redirect_uri' supplied is not registered for this 'client_id'"</b></summary>
+
+<img src="docs/images/error-redirect-uri.png" width="480" alt="Tesla's redirect_uri error page">
+
+Tesla doesn't have your sign-in address. On developer.tesla.com, open your app → **Client Details → Edit** and check that:
+
+- **Allowed Redirect URI(s)** is exactly `https://yourname.github.io/tesla-callback/`, slash included, and was added with the **Add** button if there is one.
+- **OAuth Grant Type** includes **Authorization Code**.
+
+Save, wait a minute and press **Sign In** again. If your Client Details still look like this, the change wasn't saved:
+
+<img src="docs/images/tesla-client-details-example.png" width="620" alt="Client Details with no redirect URI and only client-credentials">
 </details>
 
-<details><summary><b>Register fails: "Root domain … must match registered allowed origin"</b></summary>
+<details>
+<summary><b>Register fails: "Root domain … must match registered allowed origin"</b></summary>
 
-**Allowed Origin URL(s)** on developer.tesla.com must be exactly `https://YOURNAME.github.io`: no `/` at the end, no extra words.
+**Allowed Origin URL(s)** must be exactly `https://yourname.github.io`, with no slash or path after it.
 </details>
 
-<details><summary><b>The widget looks old or blank after an update</b></summary>
+<details>
+<summary><b>The widget looks out of date after an update</b></summary>
 
-macOS keeps old widgets in memory. Run this in Terminal, or restart your Mac:
+macOS keeps the old widget running. Restart it, or restart your Mac:
 
 ```bash
 pkill -f TeslaWidgetExtension; killall NotificationCenter
 ```
 </details>
 
-<details><summary><b>Buttons don't do anything</b></summary>
+<details>
+<summary><b>The buttons don't do anything</b></summary>
 
-- Is the 🚗 in your menu bar? The app has to be running (turn on **Open at Login**).
-- Did you pair the key (Part 3, step 4)? **Check Pairing** in the setup window should turn ✅.
-- Look at the message on the widget: it tells you what the car said.
+- The app has to be running (the car icon in the menu bar). Turn on **Open at Login**.
+- The key has to be paired with the car: **Check Pairing** in the setup window should show a green check.
+- The widget shows the car's reason when a command is refused.
 </details>
 
-<details><summary><b>"Install Xcode" or "No Apple developer certificate"</b></summary>
+<details>
+<summary><b>The installer says there's no Apple developer certificate</b></summary>
 
-Do Part 1, steps 1 and 2 again. In Xcode → Settings → Accounts, make sure you see your name and an **Apple Development** certificate.
+In Xcode → **Settings → Accounts**, select your Apple ID → **Manage Certificates… → + → Apple Development**, then run `./install.sh` again.
 </details>
 
 ---
 
-## 🧹 Uninstall
-
-```bash
-~/tesla-mac-widget/uninstall.sh
-```
-
-## 🛠️ How it works (for the curious)
+## How it fits together
 
 ```
- Tesla servers ──(official Fleet API)──► Tesla Widget app (menu bar) ──► widget on your desktop
-                                           │  keeps your login fresh, checks the car,
- your car ◄──(signed commands)── tesla-http-proxy (Tesla's own open-source tool, runs on your Mac)
+Tesla Fleet API ──► Tesla Widget (menu bar app) ──► desktop widget
+                      │ sign-in, token refresh, polling, map, car render
+Your car ◄── tesla-http-proxy ◄── widget buttons
+            (Tesla's open-source command signer, run locally by the app)
 ```
 
-- `App/`: the menu bar app (sign-in, polling, map, car photo, runs the proxy)
-- `Widget/`: the desktop widget (small, medium, large) and its buttons
-- `Shared/`: code both use, like the Fleet API client
-- `install.sh`, `tools/`, `website/`: the installer and helpers
+```
+App/       menu bar app: setup window, Tesla sign-in, polling, car render, map, command proxy
+Widget/    the widget: small, medium and large layouts, and the button actions
+Shared/    Fleet API client and the data both sides share
+tools/     icon slicer, app icon maker, README image renderer
+website/   the sign-in page the installer puts on your GitHub site
+```
 
----
+To uninstall, run `./uninstall.sh`. It removes the app and, if you say so, your keys and settings.
 
-<sub>Not made by or affiliated with Tesla, Inc. "Tesla" and the Tesla logo are trademarks of Tesla, Inc.
-This project ships no Tesla artwork; it uses Tesla's public API and image service on your behalf.
-MIT licensed.</sub>
+## Not affiliated
+
+This is an independent project. It is not made, endorsed or supported by Tesla, Inc. "Tesla" is used only
+to say which car it works with; the repository contains no Tesla artwork, and car renders are fetched from
+Tesla's public configurator on your behalf.
+
+## License
+
+[MIT](LICENSE)
