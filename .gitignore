@@ -1,0 +1,10 @@
+# Build output
+build/
+DerivedData/
+*.xcodeproj/
+# Your private look (made by install.sh from ~/.tesla-widget/overrides)
+App/Assets.xcassets/AppIconCustom.appiconset/
+# Secrets never belong in the repo
+*.pem
+*.env
+.DS_Store

@@ -1,0 +1,18 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tesla sign-in</title>
+<style>body{font:16px -apple-system,system-ui,sans-serif;max-width:520px;margin:15vh auto;padding:0 16px;text-align:center}</style>
+<p id="msg">Returning to Tesla Widget…</p>
+<script>
+  // Hand the OAuth code back to the Mac app via its custom URL scheme.
+  var q = location.search;
+  if (q.indexOf("code=") >= 0 || q.indexOf("error=") >= 0) {
+    location.href = "teslawidget://callback" + q;
+    setTimeout(function () {
+      document.getElementById("msg").textContent = "If nothing happened, make sure the Tesla Widget app is installed, then try signing in again.";
+    }, 1500);
+  } else {
+    document.getElementById("msg").textContent = "Nothing to do here.";
+  }
+</script>

@@ -1,0 +1,64 @@
+# Generated into TeslaWidget.xcodeproj by `xcodegen generate` (install.sh does this for you).
+# TEAM_ID and BUNDLE_PREFIX come from ~/.tesla-widget/build.env, written by install.sh.
+name: TeslaWidget
+options:
+  deploymentTarget:
+    macOS: "15.0"
+settings:
+  base:
+    DEVELOPMENT_TEAM: ${TEAM_ID}
+    TW_BUNDLE_PREFIX: ${BUNDLE_PREFIX}
+    TW_APP_GROUP: $(DEVELOPMENT_TEAM).$(TW_BUNDLE_PREFIX).teslawidget
+    TW_APP_ICON: ${APP_ICON}
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "8"
+targets:
+  TeslaWidget:
+    type: application
+    platform: macOS
+    sources: [App, Shared]
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Tesla Widget
+        LSUIElement: true
+        LSApplicationCategoryType: public.app-category.utilities
+        TWAppGroup: $(TW_APP_GROUP)
+        CFBundleURLTypes:
+          - CFBundleURLName: $(TW_BUNDLE_PREFIX).TeslaWidget.oauth
+            CFBundleURLSchemes: [teslawidget]
+    entitlements:
+      path: App/TeslaWidget.entitlements
+      properties:
+        com.apple.security.application-groups: [$(TW_APP_GROUP)]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(TW_BUNDLE_PREFIX).TeslaWidget
+        PRODUCT_NAME: Tesla Widget
+        ASSETCATALOG_COMPILER_APPICON_NAME: $(TW_APP_ICON)
+        ENABLE_HARDENED_RUNTIME: YES
+    dependencies:
+      - target: TeslaWidgetExtension
+  TeslaWidgetExtension:
+    type: app-extension
+    platform: macOS
+    sources: [Widget, Shared]
+    info:
+      path: Widget/Info.plist
+      properties:
+        CFBundleDisplayName: Tesla
+        TWAppGroup: $(TW_APP_GROUP)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Widget/TeslaWidgetExtension.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
+        com.apple.security.application-groups: [$(TW_APP_GROUP)]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(TW_BUNDLE_PREFIX).TeslaWidget.Widget
+        ENABLE_HARDENED_RUNTIME: YES
